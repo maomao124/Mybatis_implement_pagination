@@ -94,16 +94,16 @@
 
 
     <!--Mybatis插件-->
-    <plugins>
-        <!--分页助手-->
-        <plugin interceptor="com.github.pagehelper.PageHelper">
-            <!--设置方言-->
-            <property name="dialect" value="mysql"/>
-            <!-- 该参数默认为false -->
-            <!-- 设置为true时，使用RowBounds分页会进行count查询,也就是是否查询数据总条数 -->
-            <property name="rowBoundsWithCount" value="true"/>
-        </plugin>
-    </plugins>
+    <!--<plugins>-->
+    <!--    &lt;!&ndash;分页助手&ndash;&gt;-->
+    <!--    <plugin interceptor="com.github.pagehelper.PageHelper">-->
+    <!--        &lt;!&ndash;设置方言&ndash;&gt;-->
+    <!--        <property name="dialect" value="mysql"/>-->
+    <!--        &lt;!&ndash; 该参数默认为false &ndash;&gt;-->
+    <!--        &lt;!&ndash; 设置为true时，使用RowBounds分页会进行count查询,也就是是否查询数据总条数 &ndash;&gt;-->
+    <!--        <property name="rowBoundsWithCount" value="true"/>-->
+    <!--    </plugin>-->
+    <!--</plugins>-->
 
     <!--*****************************************************************************-->
 
@@ -129,6 +129,34 @@
                 <property name="username" value="${jdbc.username}"/>
                 <!--密码-->
                 <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+
+        <environment id="Druid">
+            <!-- 使用JDBC的事务管理 ，两个事务管理器，JDBC或MANAGED-->
+            <transactionManager type="t1.Druid"/>
+
+            <!--配置数据库的连接属性-->
+            <!--type属性用于指定数据源类型-->
+            <!--UNPOOLED ：没有数据库连接池，效率低下。MyBatis需要打开和关闭每个数据库操作的连接，它有点慢，通常应用于简单的应用程序。-->
+            <!--POOLED：   对于 POOLED 数据源类型，MyBatis将维护一个数据库连接池。并且对于每个数据库的操作，-->
+            <!--           MyBatis都会使用连接池中的连接，并在操作完成后将它们返回到池中。减少了创建新连接所需的初始连接和身份验证时间。-->
+            <!--JNDI：     对于JNDI的数据源类型，MyBatis将从JNDI数据源中获取连接。-->
+            <dataSource type="POOLED">
+                <!-- MySQL数据库驱动 -->
+                <property name="driver" value="${jdbc.driver}"/>
+                <!-- 连接数据库的URL -->
+                <property name="url" value="${jdbc.url}"/>
+                <!--用户名-->
+                <property name="username" value="${jdbc.username}"/>
+                <!--密码-->
+                <property name="password" value="${jdbc.password}"/>
+                <!--初始化连接数-->
+                <property name="initialSize" value="${jdbc.initialSize}"/>
+                <!--最大活动连接数-->
+                <property name="maxActive" value="${jdbc.maxActive}"/>
+                <!--最大等待时间-->
+                <property name="maxWait" value="${jdbc.maxWait}"/>
             </dataSource>
         </environment>
     </environments>
