@@ -34,7 +34,7 @@ class SiteMapperTest
         //读取配置文件mybatis-config.xml
         InputStream config = Resources.getResourceAsStream("mybatis-config.xml");
         //根据配置文件构建SqlSessionFactory
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(config,"Druid");
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(config);
         //通过SqlSessionFactory创建SqlSession
         SqlSession sqlSession = sqlSessionFactory.openSession();
 

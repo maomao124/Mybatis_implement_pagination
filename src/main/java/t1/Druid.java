@@ -5,6 +5,7 @@ import org.apache.ibatis.datasource.DataSourceFactory;
 import org.apache.ibatis.session.TransactionIsolationLevel;
 import org.apache.ibatis.transaction.Transaction;
 import org.apache.ibatis.transaction.TransactionFactory;
+import org.apache.ibatis.transaction.jdbc.JdbcTransaction;
 
 import javax.sql.DataSource;
 import java.io.IOException;
@@ -39,6 +40,8 @@ public class Druid implements DataSourceFactory, TransactionFactory
     @Override
     public Transaction newTransaction(Connection conn)
     {
+        //Transaction transaction=new JdbcTransaction(conn);
+        //return transaction;
         return null;
     }
 
